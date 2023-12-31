@@ -1,0 +1,23 @@
+.main-search input {
+  background-image: url(/assets/search.svg);
+  background-position: 99%;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+.tag-container {
+  min-height: 50px;
+}
+
+.dropdown {
+  margin-left: 20px;
+}
+
+.dropdown input {
+  border: none;
+}
+
+.filter-input::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
