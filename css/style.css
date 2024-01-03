@@ -37,11 +37,11 @@ ul {
 }
 
 .card-bottom-container {
+  font-size: 12px;
 }
 
 .description {
   line-height: 16px;
-  font-family: "Roboto";
   font-style: normal;
   height: 113px;
   overflow: hidden;
