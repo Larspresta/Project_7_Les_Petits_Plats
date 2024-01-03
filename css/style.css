@@ -1,3 +1,7 @@
+ul {
+  list-style-type: none;
+}
+
 .main-search input {
   background-image: url(/assets/search.svg);
   background-position: 99%;
@@ -19,5 +23,30 @@
 
 .filter-input::placeholder {
   color: white;
-  opacity: 1; /* Firefox */
+  opacity: 1;
+}
+
+.recipe-info {
+  height: 17vh;
+  background-color: #e7e7e7;
+}
+
+.recipe-card-img {
+  height: 17vh;
+  background-color: #c7bebe;
+}
+
+.card-bottom-container {
+}
+
+.description {
+  line-height: 16px;
+  font-family: "Roboto";
+  font-style: normal;
+  height: 113px;
+  overflow: hidden;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
 }
