@@ -1,5 +1,4 @@
 import { recipes } from "./recipes.js";
-console.log("here is the recipes array", recipes);
 
 const recipeContainer = document.querySelector("[data-recipe-card-container]");
 const recipeCard = document.querySelector("[data-recipe-card]");
@@ -14,7 +13,6 @@ searchInput.addEventListener("input", (e) => {
   if (value.length >= 3) {
     let match = false;
     for (let j = 0; j < searchRecipe.length; j++) {
-      console.log(searchRecipe);
       const recipe = searchRecipe[j];
       const isVisible =
         recipe.title.toLowerCase().includes(value) ||
@@ -82,3 +80,52 @@ searchRecipe = recipes.map((recipe) => {
     element: card,
   };
 });
+
+// performance test loops
+function searchWithNativeLoops(input) {
+  let match = false;
+  for (let i = 0; i < searchRecipe.length; i++) {
+    const recipe = searchRecipe[i];
+    const isVisible =
+      recipe.title.toLowerCase().includes(input) ||
+      recipe.description.toLowerCase().includes(input) ||
+      ingredientSearch(recipe.ingredients, input);
+    if (isVisible) {
+      match = true;
+    }
+  }
+  return match;
+}
+
+function searchWithFunctionalProgramming(input) {
+  return searchRecipe.some(
+    (recipe) =>
+      recipe.title.toLowerCase().includes(input) ||
+      recipe.description.toLowerCase().includes(input) ||
+      recipe.ingredients.some((ingredient) => ingredient.toLowerCase().includes(input))
+  );
+}
+
+//performance test
+
+const input = "tahitian raw fish";
+const iterations = 100000;
+
+const startTimeNative = performance.now();
+for (let i = 0; i < iterations; i++) {
+  searchWithNativeLoops(input);
+}
+
+const endTimeNative = performance.now();
+const timeNative = endTimeNative - startTimeNative;
+
+const startTimefunctional = performance.now();
+for (let i = 0; i < iterations; i++) {
+  searchWithFunctionalProgramming(input);
+}
+
+const endTimeFunctional = performance.now();
+const timeFunctional = endTimeFunctional - startTimefunctional;
+
+console.log(`Time taken for native loops: ${timeNative} milliseconds`);
+console.log(`Time taken for functional programming: ${timeFunctional} milliseconds`);
