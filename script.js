@@ -13,22 +13,36 @@ searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
   if (value.length >= 3) {
     let match = false;
-    searchRecipe.forEach((recipe) => {
+    for (let j = 0; j < searchRecipe.length; j++) {
       console.log(searchRecipe);
+      const recipe = searchRecipe[j];
       const isVisible =
         recipe.title.toLowerCase().includes(value) ||
         recipe.description.toLowerCase().includes(value) ||
-        recipe.ingredients.some((ingredient) => ingredient.toLowerCase().includes(value));
+        ingredientSearch(recipe.ingredients, value);
       recipe.element.classList.toggle("hide", !isVisible);
       if (isVisible) {
         match = true;
       }
-    });
+    }
     noMatchMessage.classList.toggle("hide", match);
   } else {
-    searchRecipe.forEach((recipe) => recipe.element.classList.remove("hide"));
+    for (let j = 0; j < searchRecipe.length; j++) {
+      const recipe = searchRecipe[j];
+      recipe.element.classList.remove("hide");
+    }
   }
 });
+
+function ingredientSearch(ingredients, value) {
+  for (let i = 0; i < ingredients.length; i++) {
+    const ingredient = ingredients[i].toLowerCase();
+    if (ingredient.includes(value)) {
+      return true;
+    }
+  }
+  return false;
+}
 
 // create recipe cards
 searchRecipe = recipes.map((recipe) => {
