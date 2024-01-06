@@ -6,15 +6,15 @@ const recipeCard = document.querySelector("[data-recipe-card]");
 const searchInput = document.querySelector("[data-search]");
 const noMatchMessage = document.querySelector(".no-matches");
 
-let searchRecipe = [];
+let recipeCardItems = [];
 
 // Listen user input, search and toggle hide
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
   if (value.length >= 3) {
     let match = false;
-    searchRecipe.forEach((recipe) => {
-      console.log(searchRecipe);
+    recipeCardItems.forEach((recipe) => {
+      console.log(recipeCardItems);
       const isVisible =
         recipe.title.toLowerCase().includes(value) ||
         recipe.description.toLowerCase().includes(value) ||
@@ -26,12 +26,12 @@ searchInput.addEventListener("input", (e) => {
     });
     noMatchMessage.classList.toggle("hide", match);
   } else {
-    searchRecipe.forEach((recipe) => recipe.element.classList.remove("hide"));
+    recipeCardItems.forEach((recipe) => recipe.element.classList.remove("hide"));
   }
 });
 
 // create recipe cards
-searchRecipe = recipes.map((recipe) => {
+recipeCardItems = recipes.map((recipe) => {
   const card = recipeCard.content.cloneNode(true).children[0];
   const title = card.querySelector("[data-card-title]");
   const time = card.querySelector("[data-card-time]");
@@ -68,3 +68,36 @@ searchRecipe = recipes.map((recipe) => {
     element: card,
   };
 });
+
+function getUniqueValues(recipes, key) {
+  const valuesSet = new Set();
+
+  recipes.forEach((recipe) => {
+    if (key in recipe) {
+      const keyValue = recipe[key];
+
+      if (Array.isArray(keyValue)) {
+        keyValue.forEach((value) => {
+          if (typeof value === "string") {
+            valuesSet.add(value.toLowerCase());
+          }
+        });
+      } else if (typeof keyValue === "string") {
+        valuesSet.add(keyValue.toLowerCase());
+      }
+    }
+  });
+
+  return Array.from(valuesSet);
+}
+
+const uniqueAppliances = getUniqueValues(recipes, "appliance");
+const uniqueIngredients = getUniqueValues(recipes, "ingredients");
+const uniqueUstensils = getUniqueValues(recipes, "ustensils");
+console.log("Appliances:", uniqueAppliances);
+console.log("unique ingredients", uniqueIngredients);
+console.log("unique ustensils", uniqueUstensils);
+
+//populate dropdown <ul>
+
+// add list items from the array
