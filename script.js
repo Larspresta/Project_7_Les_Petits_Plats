@@ -72,18 +72,33 @@ recipeCardItems = recipes.map((recipe) => {
 function getUniqueValues(recipes, key) {
   const valuesSet = new Set();
 
-  recipes.forEach((recipe) => {
+  recipes.forEach((recipe, index) => {
     if (key in recipe) {
       const keyValue = recipe[key];
 
       if (Array.isArray(keyValue)) {
-        keyValue.forEach((value) => {
-          if (typeof value === "string") {
+        keyValue.forEach((value, subIndex) => {
+          if (typeof value === "object" && "ingredient" in value) {
+            // For ingredients, extract the 'ingredient' property
+            valuesSet.add(value.ingredient.toLowerCase());
+          } else if (typeof value === "string") {
+            // For other cases, add the value directly
             valuesSet.add(value.toLowerCase());
+          } else {
+            console.error(
+              `Unsupported value found in array at recipe index ${index}, sub-index ${subIndex} for key '${key}':`,
+              value
+            );
           }
         });
       } else if (typeof keyValue === "string") {
+        // Handle the case where the key value is a string
         valuesSet.add(keyValue.toLowerCase());
+      } else {
+        console.error(
+          `Unsupported value found at recipe index ${index} for key '${key}':`,
+          keyValue
+        );
       }
     }
   });
