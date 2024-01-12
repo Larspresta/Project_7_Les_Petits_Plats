@@ -114,42 +114,43 @@ console.log("unique ingredients", uniqueIngredients);
 console.log("unique ustensils", uniqueUstensils);
 
 //populate dropdown <ul>
-
 function populateDropdown(ulId, items) {
   const dropdown = document.getElementById(ulId);
   const input = dropdown.querySelector(".filter-input");
+  const list = document.createElement("ul");
+  list.classList.add("list-unstyled", "py-4", "my-2", "col-12");
 
-  let list = dropdown.querySelector("ul");
-
-  if (!list) {
-    list = document.createElement("ul");
-    list.classList.add("list-unstyled");
-
-    // Add list items from the array
-    items.forEach((item) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = item;
-      listItem.classList.add("dropdown-item");
-      listItem.addEventListener("click", () => {
-        input.value = item;
-      });
-      list.appendChild(listItem);
+  // Add list items from the array
+  items.forEach((item) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = item;
+    listItem.classList.add("dropdown-item");
+    listItem.addEventListener("click", () => {
+      input.value = item;
+      list.classList.remove("show");
+      dropdown.classList.remove("col-5");
     });
+    list.appendChild(listItem);
+  });
 
-    list.style.top = input.offsetHeight + "px";
+  dropdown.appendChild(list);
 
-    dropdown.appendChild(list);
-  }
+  list.style.top = input.offsetHeight + "px";
 
-  // Toggle the display of the list when the chevron is clicked or input focus
   const chevron = dropdown.querySelector("img");
+
+  // Toggle the 'show' class on the list when the chevron is clicked or input focus
   chevron.addEventListener("click", () => {
-    list.style.display = list.style.display === "none" ? "block" : "none";
+    list.classList.toggle("show");
+    dropdown.classList.toggle("col-5", list.classList.contains("show"));
   });
 
   input.addEventListener("focus", () => {
-    list.style.display = list.style.display === "none" ? "block" : "none";
+    list.classList.toggle("show");
+    dropdown.classList.toggle("col-5", list.classList.contains("show"));
   });
 }
 
+populateDropdown("ingredients-dropdown", uniqueIngredients);
 populateDropdown("appliances-dropdown", uniqueAppliances);
+populateDropdown("ustensils-dropdown", uniqueUstensils);

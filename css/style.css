@@ -20,18 +20,29 @@ ul {
 .dropdown {
   margin-left: 20px;
 }
+.dropdown-item {
+  color: white;
+}
 
 .list-unstyled {
   position: absolute;
   background-color: antiquewhite;
   left: 0;
-  top: 45px;
   column-count: 3;
   background-color: inherit;
+  display: none;
+}
+
+.list-unstyled.show {
+  display: block;
 }
 
 .dropdown input {
   border: none;
+}
+
+.filter-input::placeholder {
+  color: white;
 }
 
 .recipe-info {
