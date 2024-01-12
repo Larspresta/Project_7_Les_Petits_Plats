@@ -13,17 +13,25 @@ ul {
   min-height: 50px;
 }
 
+.dropdown-container {
+  position: relative;
+}
+
 .dropdown {
   margin-left: 20px;
 }
 
-.dropdown input {
-  border: none;
+.list-unstyled {
+  position: absolute;
+  background-color: antiquewhite;
+  left: 0;
+  top: 45px;
+  column-count: 3;
+  background-color: inherit;
 }
 
-.filter-input::placeholder {
-  color: white;
-  opacity: 1;
+.dropdown input {
+  border: none;
 }
 
 .recipe-info {

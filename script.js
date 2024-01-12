@@ -115,4 +115,41 @@ console.log("unique ustensils", uniqueUstensils);
 
 //populate dropdown <ul>
 
-// add list items from the array
+function populateDropdown(ulId, items) {
+  const dropdown = document.getElementById(ulId);
+  const input = dropdown.querySelector(".filter-input");
+
+  let list = dropdown.querySelector("ul");
+
+  if (!list) {
+    list = document.createElement("ul");
+    list.classList.add("list-unstyled");
+
+    // Add list items from the array
+    items.forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      listItem.classList.add("dropdown-item");
+      listItem.addEventListener("click", () => {
+        input.value = item;
+      });
+      list.appendChild(listItem);
+    });
+
+    list.style.top = input.offsetHeight + "px";
+
+    dropdown.appendChild(list);
+  }
+
+  // Toggle the display of the list when the chevron is clicked or input focus
+  const chevron = dropdown.querySelector("img");
+  chevron.addEventListener("click", () => {
+    list.style.display = list.style.display === "none" ? "block" : "none";
+  });
+
+  input.addEventListener("focus", () => {
+    list.style.display = list.style.display === "none" ? "block" : "none";
+  });
+}
+
+populateDropdown("appliances-dropdown", uniqueAppliances);

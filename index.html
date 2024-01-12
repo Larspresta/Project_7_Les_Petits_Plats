@@ -34,45 +34,39 @@
     </header>
     <section class="search-filters container">
       <div class="tag-container"></div>
-      <div class="dropdown-container my-4 row gx-50">
-        <div class="ingredients-search rounded-1 dropdown bg-primary py-3 col-2">
-          <div class="d-flex">
-            <input
-              type="text"
-              class="form-control bg-primary filter-input"
-              id="filter-ingredients"
-              placeholder="Ingredients"
-              aria-label="ingredients"
-            />
-            <img src="/assets/chevron-down.svg" alt="" />
-          </div>
-          <ul id="ingredients-dropdown"></ul>
+      <div class="dropdown-container row gx-50">
+        <div
+          id="ingredients-dropdown-btn"
+          class="ingredients-search rounded-1 dropdown bg-primary py-2 col-2 input-container text-light d-flex justify-content-between align-items-center"
+        >
+          <p class="my-0">Ingredients</p>
+          <img src="/assets/chevron-down.svg" alt="" />
         </div>
-        <div class="appliances-search rounded-1 dropdown bg-success py-3 col-2">
-          <div class="d-flex">
-            <input
-              type="text"
-              class="form-control bg-success filter-input"
-              id="filter-ingredients"
-              placeholder="Ingredients"
-              aria-label="ingredients"
-            />
-            <img src="/assets/chevron-down.svg" alt="" />
-          </div>
-          <ul id="appliances-dropdown"></ul>
+        <div
+          id="appliances-dropdown"
+          class="device-search rounded-1 dropdown bg-success py-2 col-4 input-container d-flex"
+        >
+          <input
+            type="text"
+            class="form-control bg-success filter-input"
+            id="filter-ingredients"
+            placeholder="Devices"
+            aria-label="devices"
+          />
+          <img src="/assets/chevron-down.svg" alt="" />
         </div>
-        <div class="ustensils-search rounded-1 dropdown bg-danger py-3 col-2">
-          <div class="d-flex">
-            <input
-              type="text"
-              class="form-control bg-danger filter-input"
-              id="filter-ingredients"
-              placeholder="utensils"
-              aria-label="utensils"
-            />
-            <img src="/assets/chevron-down.svg" alt="" />
-          </div>
-          <ul id="ustensils-dropdown"></ul>
+        <div
+          id="ustensils-dropdow"
+          class="utensils-search rounded-1 dropdown bg-danger py-2 col-2 input-container d-flex"
+        >
+          <input
+            type="text"
+            class="form-control bg-danger filter-input"
+            id="filter-ingredients"
+            placeholder="Utensils"
+            aria-label="utensils"
+          />
+          <img src="/assets/chevron-down.svg" alt="" />
         </div>
       </div>
     </section>
