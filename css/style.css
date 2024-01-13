@@ -73,3 +73,22 @@ ul {
 .hide {
   display: none;
 }
+
+.tags .ingredients-dropdown {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.tags .appliances-dropdown {
+  background-color: #198754;
+  color: white;
+}
+
+.tags .ustensils-dropdown {
+  background-color: #dc3545;
+  color: white;
+}
+
+.tags img {
+  padding-left: 1rem;
+}

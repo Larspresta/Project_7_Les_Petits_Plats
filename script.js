@@ -118,6 +118,7 @@ function populateDropdown(ulId, items) {
   const dropdown = document.getElementById(ulId);
   const input = dropdown.querySelector(".filter-input");
   const list = document.createElement("ul");
+  const tags = document.querySelector(".tags");
   list.classList.add("list-unstyled", "py-4", "my-2", "col-12");
 
   // Add list items from the array
@@ -125,10 +126,19 @@ function populateDropdown(ulId, items) {
     const listItem = document.createElement("li");
     listItem.textContent = item;
     listItem.classList.add("dropdown-item");
+    listItem.dataset.array = ulId;
     listItem.addEventListener("click", () => {
-      input.value = item;
-      list.classList.remove("show");
-      dropdown.classList.remove("col-5");
+      const tag = document.createElement("li");
+      const icon = document.createElement("img");
+      icon.src = "/assets/x-circle.svg";
+      tag.classList.add(ulId, "rounded-3", "mx-2", "list-group-item");
+      tag.textContent = item;
+      tag.appendChild(icon);
+      tags.appendChild(tag);
+
+      icon.addEventListener("click", () => {
+        tag.remove();
+      });
     });
     list.appendChild(listItem);
   });
