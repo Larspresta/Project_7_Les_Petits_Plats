@@ -15,10 +15,13 @@ ul {
 
 .dropdown-container {
   position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: 0;
 }
 
 .dropdown {
-  margin-left: 20px;
+  margin-right: 20px;
 }
 .dropdown-item {
   color: white;
