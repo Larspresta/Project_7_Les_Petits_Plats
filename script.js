@@ -170,7 +170,7 @@ function populateDropdown(ulId, items) {
     listItem.addEventListener("click", () => {
       const tag = document.createElement("li");
       const icon = document.createElement("img");
-      icon.src = "/assets/x-circle.svg";
+      icon.src = "assets/x-circle.svg";
       tag.classList.add(ulId, "rounded-3", "mx-2", "list-group-item");
       tag.textContent = item;
       tag.appendChild(icon);
